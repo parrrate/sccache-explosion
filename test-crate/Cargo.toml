@@ -1,59 +1,9 @@
-[workspace]
-members = []
-
-[workspace.package]
-edition = "2024"
-
 [package]
-name = "tagit"
-version = "0.1.50-a.0+ci.5"
+name = "test-crate"
+version = "0.0.0"
 description = "test to check if sccache explodes"
-edition.workspace = true
-
-[workspace.dependencies]
-tagit-command = "0.3.1"
-tagit-core = "0.3.3"
-tagit-impl = "0.3.3"
-tagit-workspace-cargo = { version = "0.2.2", features = ["static"] }
-tagit-workspace-npm = { version = "0.1.2" }
-tagit-workspace-pyproject = { version = "0.1.2" }
-
-anyhow = "1.0.86"
-clap = { version = "4.5.9", features = ["derive"] }
-owo-colors = "4.0.0"
-semver = "1.0.23"
+edition = "2024"
+publish = false
 
 [dependencies]
-tagit-command.workspace = true
-tagit-impl.workspace = true
-tagit-workspace-cargo = { workspace = true, optional = true }
-tagit-workspace-npm = { workspace = true, optional = true }
-tagit-workspace-pyproject = { workspace = true, optional = true }
-
-anyhow.workspace = true
-clap.workspace = true
-
-[profile.dev]
-debug = false
-
-[profile.release]
-strip = true
-lto = true
-opt-level = "z"
-
-[features]
-default = ["changelog", "diff", "sub", "tag"]
-changelog = ["workspaces", "tagit-impl/changelog"]
-diff = ["workspaces", "tagit-impl/diff"]
-sub = ["tagit-impl/sub"]
-tag = ["workspaces", "tagit-impl/tag"]
-workspaces = [
-    "dep:tagit-workspace-cargo",
-    "dep:tagit-workspace-npm",
-    "dep:tagit-workspace-pyproject",
-]
-
-[package.metadata.binstall]
-pkg-url = "{ repo }/releases/download/{ version }/{ name }{ binary-ext }"
-pkg-fmt = "bin"
-disabled-strategies = ["compile"]
+cargo = { version = "0.91", features = ["all-static"] }
