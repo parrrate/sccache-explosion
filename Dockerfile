@@ -4,5 +4,4 @@ RUN cargo install sccache
 ENV RUSTC_WRAPPER=sccache
 COPY test-crate /test-crate
 WORKDIR /test-crate
-RUN cargo clippy --release --workspace --locked --all-targets -- --deny=warnings
-RUN cargo build --release --locked
+RUN cargo clippy --release --workspace --locked --all-targets -- --deny=warnings && cargo build --release --locked
