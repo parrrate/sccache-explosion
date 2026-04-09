@@ -1,3 +1,3 @@
-fn main() -> anyhow::Result<()> {
-    tagit::main()
+fn main() {
+    println!("what");
 }
